@@ -1,0 +1,31 @@
+- title: Ubuntu kernel headers
+  start_url: https://archive.ubuntu.com/ubuntu/pool/main/l/
+  folder_patterns:
+    - linux.*
+  file_pattern: ^linux.*headers.*\.deb$
+
+- title: Oracle Linux 8 HTML Index
+  start_url: https://yum.oracle.com/oracle-linux-8.html
+  extract_repos_from_index: true
+  repo_link_pattern: /repo/OracleLinux/OL8/(baseos|appstream|UEKR.+).+x86_64
+  folder_patterns: []
+  file_pattern: .*kernel(?!.*debug).*devel.*x86_64.*\.rpm$
+
+- title: Centos 6, 7 devel packages
+  start_url: https://vault.centos.org/
+  folder_patterns:
+    - ^[67].+
+    - .*
+    - x86_64
+    - Packages
+  file_pattern: ^kernel(?!.*debug).*devel.*x86_64.*\.rpm$
+
+- title: Centos > 8 devel packages
+  start_url: https://vault.centos.org/
+  folder_patterns:
+    - ^[8].+
+    - .*
+    - x86_64
+    - os
+    - Packages
+  file_pattern: ^kernel(?!.*(debug|tool|lib)).*devel.*x86_64.*\.rpm$
