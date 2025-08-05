@@ -44,14 +44,14 @@ def crawl(config, url, folder_patterns, file_pattern, depth=0, visited=None, res
         # If no folder_patterns, match files at root
         if not folder_patterns:
             if re.match(file_pattern, link):
-                print(f"Found file: {abs_link}")
+                # print(f"Found file: {abs_link}")
                 results.append(abs_link)
         else:
             if link.endswith('/'):
                 if depth < len(folder_patterns) and re.match(folder_patterns[depth], link.strip('/')):
                     crawl(config, abs_link, folder_patterns, file_pattern, depth + 1, visited, results, start_url)
             elif depth == len(folder_patterns) and re.match(file_pattern, link):
-                print(f"Found file: {abs_link}")
+                # print(f"Found file: {abs_link}")
                 results.append(abs_link)
     return results
 
@@ -97,8 +97,6 @@ def main():
         # If the start_url is an HTML index, extract repo links first
         if conf.get("extract_repos_from_index"):
             repo_links = extract_repo_links(conf["start_url"], conf.get("repo_link_pattern"))
-            for repo_url in repo_links:
-                print(f"Found repo link: {repo_url}")
             for repo_url in repo_links:
                 print(f"  Found repo: {repo_url}")
                 results = crawl(
